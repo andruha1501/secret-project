@@ -9,7 +9,7 @@ declare let google: any;
 export class AppComponent implements OnInit {
   title = 'app';
   ngOnInit() {
-    let map = new google.maps.Map(document.getElementById('map'), {
+    /*let map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -34.397, lng: 150.644},
       scrollwheel: true,
       zoom: 16
@@ -29,6 +29,6 @@ export class AppComponent implements OnInit {
             infoWindow.open(map);
             map.setCenter(pos);
       });
-    }
+    }*/
   }
 }
