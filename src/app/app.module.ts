@@ -3,14 +3,25 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AddHouseComponent } from './add-house/add-house.component';
+import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MdToolbarModule, MdIconModule, MdSidenavModule, MdButtonModule} from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddHouseComponent
+    AddHouseComponent,
+    HeaderComponent,
+    SidebarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    MdToolbarModule, 
+    MdIconModule,
+    MdSidenavModule,
+    MdButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
