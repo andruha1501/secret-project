@@ -8,6 +8,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdToolbarModule, MdIconModule, MdSidenavModule, MdButtonModule, MdCardModule, MdSliderModule} from '@angular/material';
 import { ViewListComponent } from './view-list/view-list.component';
+import { appRoutes } from './main.router';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { ViewListComponent } from './view-list/view-list.component';
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot( appRoutes),
     BrowserAnimationsModule,
     MdToolbarModule, 
     MdIconModule,

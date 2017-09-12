@@ -20,37 +20,44 @@ declare let google: any;
       state('left',   style({
         transform: 'rotate(180deg)'
       })),
-      transition('right <=> left', animate('100ms ease-out'))
+      transition('right <=> left', animate('500ms ease-out'))
     ])
   ]
 })
 export class AppComponent implements OnInit {
-  title = 'app';
-  state: string = "right";
+  viewListTitle = 'Посмотреть лист';
+  state: string = 'right';
   ngOnInit() {
-    let map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 150.644},
-      scrollwheel: true,
-      zoom: 16
-    });
+    // let map = new google.maps.Map(document.getElementById('map'), {
+    //   center: {lat: -34.397, lng: 150.644},
+    //   scrollwheel: true,
+    //   zoom: 16
+    // });
 
-    let infoWindow = new google.maps.InfoWindow;
+    // let infoWindow = new google.maps.InfoWindow;
 
-    if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+    // if (navigator.geolocation) {
+    //       navigator.geolocation.getCurrentPosition(function(position) {
+    //         var pos = {
+    //           lat: position.coords.latitude,
+    //           lng: position.coords.longitude
+    //         };
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('This is you.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-      });
-    }
+    //         infoWindow.setPosition(pos);
+    //         infoWindow.setContent('This is you.');
+    //         infoWindow.open(map);
+    //         map.setCenter(pos);
+    //   });
+    // }
   }
   toggleState(): void {
-    this.state = (this.state === 'right' ? 'left' : 'right');
+    if(this.state === 'right') {
+      this.state = 'left';
+      this.viewListTitle = 'Спрятать лист';  
+    }
+    else {
+      this.state = 'right';
+      this.viewListTitle = 'Посмотреть лист';
+    }
   }
 }
