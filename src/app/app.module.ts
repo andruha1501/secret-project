@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }   from '@angular/forms';
+import { PartyService }   from './services/party.service';
 
 import { AppComponent } from './app.component';
 import { AddHouseComponent } from './add-house/add-house.component';
@@ -10,9 +12,10 @@ import { AddHouseComponent } from './add-house/add-house.component';
     AddHouseComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [PartyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

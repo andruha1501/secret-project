@@ -3,21 +3,21 @@
     <form>
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" required>
+        <input type="text" name="title" class="form-control" [(ngModel)]="title">
       </div>
 
       <div class="form-group">
         <label for="alterEgo">Lan1</label>
-        <input type="text" class="form-control" id="lan1">
+        <input type="text" class="form-control" name="lan1" [(ngModel)]="lan1">
       </div>
 
       <div class="form-group">
         <label for="alterEgo">Lan2</label>
-        <input type="text" class="form-control" id="lan2">
+        <input type="text" class="form-control" name="lan2" [(ngModel)]="lan2">
       </div>
 
 
-      <button type="submit" class="btn btn-success">Submit</button>
+      <button type="submit" class="btn btn-success"(click)="addParty(title, lan1, lan2)">Submit</button>
 
     </form>
 </div>
