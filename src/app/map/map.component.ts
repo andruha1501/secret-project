@@ -24,8 +24,8 @@ export class MapComponent implements OnInit {
       center: latlng,
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      scrollwheel: true,
-      draggable: true
+      disableDefaultUI: true,
+      zoomControl: true
     });
 
   }
