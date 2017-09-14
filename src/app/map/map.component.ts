@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, NgZone } from '@angular/core';
 import {} from '@types/googlemaps';
+import { MapService } from '../services/map.service';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -13,9 +14,9 @@ export class MapComponent implements OnInit {
   @ViewChild('mapContainer') mapContainer: ElementRef;
   
   public map: google.maps.Map;
-  public markers: google.maps.Marker[] = []; 
+  //public markers: google.maps.Marker[] = []; 
   
-  constructor() { }
+  constructor(private mapService: MapService) { }
 
   ngOnInit() {
     let latlng = new google.maps.LatLng(this.lat,this.lng);
@@ -27,6 +28,7 @@ export class MapComponent implements OnInit {
       draggable: true
     });
 
+    this.getData();
   }
 
   public addMarker(lat: number, lng: number) {
@@ -34,9 +36,18 @@ export class MapComponent implements OnInit {
       position: new google.maps.LatLng(lat,lng),
       map: this.map
     });
-
-    this.markers.push(marker);
+    //this.markers.push(marker);
+    
   }
 
+  getData(): void {
+    this.mapService
+        .getData()
+        .subscribe(markers => {
+          for(var m of markers)
+            this.addMarker(m.lat, m.lng);
+
+        });
+  }
  
 }

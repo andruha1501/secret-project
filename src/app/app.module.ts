@@ -11,6 +11,8 @@ import { ViewListComponent } from './view-list/view-list.component';
 import { appRoutes } from './app.router';
 import { RouterModule } from '@angular/router';
 import { MapComponent } from './map/map.component';
+import {HttpClientModule} from '@angular/common/http';
+import { MapService } from './services/map.service'
 
 @NgModule({
   declarations: [
@@ -31,9 +33,10 @@ import { MapComponent } from './map/map.component';
     MdButtonModule,
     MdCardModule,
     MdSliderModule,
-    MdInputModule
+    MdInputModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
