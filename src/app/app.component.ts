@@ -1,67 +1,68 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { PartyService } from './services/party.service';
-import { Party } from './classes/party';
+import { Component, OnInit } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 declare let google: any;
 declare let map: any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    trigger('arrow', [
+      state('right', style({
+        transform: 'rotate(0deg)'
+      })),
+      state('left',   style({
+        transform: 'rotate(180deg)'
+      })),
+      transition('right <=> left', animate('500ms ease-out'))
+    ])
+  ]
 })
 export class AppComponent implements OnInit {
-  parties: Party[] = [];
-  party_location: Location[] = [];
 
-  constructor(private partyService: PartyService) { }
+  viewListTitle = 'Посмотреть лист';
+  state: string = 'right';
 
-  onClick() {
 
-    this.parties = this.partyService.getData();
-
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: { lat: -25.363, lng: 131.044 },
-      scrollwheel: true,
-      zoom: 16
-    });
-    for (let item of this.parties) {
-      let marker = new google.maps.Marker({
-        map: map,
-        position: { lat: -25.363, lng: 131.044 },
-        title: item.title
-      });
-    }
-  }
 
   ngOnInit() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: { lat: -25.363, lng: 131.044 },
-      scrollwheel: true,
-      zoom: 16
-    });
+    // let map = new google.maps.Map(document.getElementById('map'), {
+    //   center: {lat: -34.397, lng: 150.644},
+    //   scrollwheel: true,
+    //   zoom: 16
+    // });
 
-    this.parties = this.partyService.getData();
+    // let infoWindow = new google.maps.InfoWindow;
 
-    for (let item of this.parties) {
-      let marker = new google.maps.Marker({
-        map: map,
-        position: { lat: item.lan1, lng: item.lan2 },
-        title: item.title
-      });
+    // if (navigator.geolocation) {
+    //       navigator.geolocation.getCurrentPosition(function(position) {
+    //         var pos = {
+    //           lat: position.coords.latitude,
+    //           lng: position.coords.longitude
+    //         };
+
+    //         infoWindow.setPosition(pos);
+    //         infoWindow.setContent('This is you.');
+    //         infoWindow.open(map);
+    //         map.setCenter(pos);
+    //   });
+    // }
+  }
+  toggleState(): void {
+    if(this.state === 'right') {
+      this.state = 'left';
+      this.viewListTitle = 'Спрятать лист';
     }
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        let pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('This is you.');
-        infoWindow.open(map);
-        map.setCenter(pos);
-      });
+    else {
+      this.state = 'right';
+      this.viewListTitle = 'Посмотреть лист';
     }
 
     let infoWindow = new google.maps.InfoWindow;

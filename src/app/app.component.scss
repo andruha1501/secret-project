@@ -1,0 +1,34 @@
+#map {
+  height: 500px;
+}
+
+.sidebar {
+
+  height: 90vh;
+  md-sidenav {
+    width: 300px;
+  }
+
+}
+.sidebar-two {
+  height: 90vh;
+  md-sidenav {
+    width: 200px;
+    background: rgba(0, 0, 0, .35)
+  }
+}
+
+.view-list {
+  z-index: 999;
+  position: absolute;
+  top: 0;right: 0;
+  background: none;
+  border: none;
+  outline: none;
+  text-decoration: underline;
+  margin-right: 5px;
+  &__arrow {
+    position: relative;
+    top: 7px;
+  }
+}

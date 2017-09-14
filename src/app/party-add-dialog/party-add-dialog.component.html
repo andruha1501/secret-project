@@ -1,0 +1,9 @@
+<form class="example-form">
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="lat" value="48.272774" #lat>
+        </md-form-field>
+        <md-form-field class="example-full-width">
+            <input mdInput placeholder="lng" value="25.928441" #lng>
+        </md-form-field>
+</form>
+<button md-button (click)="addParty(lat.value, lng.value)">add marker</button>

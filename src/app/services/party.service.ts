@@ -6,12 +6,9 @@ export class PartyService {
 
   parties: Party[] = [];
 
-  addData(title: string, lan1: number, lan2: number) {
-    this.parties.push(new Party(title, lan1, lan2));
-  }
-
-  getData(): Party[] {
-    return this.parties;
+  addData(lan1: number, lan2: number) {
+  //  this.parties.push(new Party(title, lan1, lan2));
+    console.log(lan1, lan2);
   }
 
 }
