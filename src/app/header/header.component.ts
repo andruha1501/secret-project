@@ -13,8 +13,8 @@ export class HeaderComponent {
 
   openDialog(): void {
     let dialogRef = this.dialog.open(PartyAddDialogComponent, {
-      width: '250px',
-      data: 'sd'
+      width: '400px',
+      //data: 'sd'
     });
 
     dialogRef.afterClosed().subscribe(result => {

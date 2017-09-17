@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
-import { PartyService }   from './services/party.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -12,6 +11,8 @@ import { ViewListComponent } from './view-list/view-list.component';
 import { appRoutes } from './app.router';
 import { RouterModule } from '@angular/router';
 import { MapComponent } from './map/map.component';
+import {HttpClientModule} from '@angular/common/http';
+import { MapService } from './services/map.service'
 import { PartyAddDialogComponent } from './party-add-dialog/party-add-dialog.component';
 
 @NgModule({
@@ -34,10 +35,11 @@ import { PartyAddDialogComponent } from './party-add-dialog/party-add-dialog.com
     MdCardModule,
     MdSliderModule,
     MdInputModule,
-    MdDialogModule
+    MdDialogModule,
+    HttpClientModule
   ],
   entryComponents: [PartyAddDialogComponent],
-  providers: [PartyService],
+  providers: [MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
