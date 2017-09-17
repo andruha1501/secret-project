@@ -19,7 +19,7 @@ export class MapService {
     return this.http.get<Markers>('../../assets/markers.json');
   }
 
-  addMarker(lat: number, lng: number) {
+  addMarker(lat: number, lng: number): void {
     let marker = new google.maps.Marker({
       position: new google.maps.LatLng(lat,lng),
       map: this.map
