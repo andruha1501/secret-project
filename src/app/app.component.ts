@@ -7,6 +7,7 @@ import {
   transition
 } from '@angular/animations';
 declare let google: any;
+declare let map: any;
 
 @Component({
   selector: 'app-root',
@@ -25,39 +26,26 @@ declare let google: any;
   ]
 })
 export class AppComponent implements OnInit {
+
   viewListTitle = 'Посмотреть лист';
   state: string = 'right';
+
+
+
   ngOnInit() {
-    // let map = new google.maps.Map(document.getElementById('map'), {
-    //   center: {lat: -34.397, lng: 150.644},
-    //   scrollwheel: true,
-    //   zoom: 16
-    // });
-
-    // let infoWindow = new google.maps.InfoWindow;
-
-    // if (navigator.geolocation) {
-    //       navigator.geolocation.getCurrentPosition(function(position) {
-    //         var pos = {
-    //           lat: position.coords.latitude,
-    //           lng: position.coords.longitude
-    //         };
-
-    //         infoWindow.setPosition(pos);
-    //         infoWindow.setContent('This is you.');
-    //         infoWindow.open(map);
-    //         map.setCenter(pos);
-    //   });
-    // }
   }
+  
   toggleState(): void {
     if(this.state === 'right') {
       this.state = 'left';
-      this.viewListTitle = 'Спрятать лист';  
+      this.viewListTitle = 'Спрятать лист';
     }
     else {
       this.state = 'right';
       this.viewListTitle = 'Посмотреть лист';
     }
+
+    let infoWindow = new google.maps.InfoWindow;
+
   }
 }

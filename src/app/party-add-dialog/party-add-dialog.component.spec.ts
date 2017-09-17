@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddHouseComponent } from './add-house.component';
+import { PartyAddDialogComponent } from './party-add-dialog.component';
 
-describe('AddHouseComponent', () => {
-  let component: AddHouseComponent;
-  let fixture: ComponentFixture<AddHouseComponent>;
+describe('PartyAddDialogComponent', () => {
+  let component: PartyAddDialogComponent;
+  let fixture: ComponentFixture<PartyAddDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddHouseComponent ]
+      declarations: [ PartyAddDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddHouseComponent);
+    fixture = TestBed.createComponent(PartyAddDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
