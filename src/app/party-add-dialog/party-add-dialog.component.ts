@@ -12,6 +12,13 @@ export class PartyAddDialogComponent implements OnInit {
   @ViewChild('location') latt: ElementRef;
   lat: number;
   lng: number;
+
+  types = [
+      {value: 'mens', viewValue: 'Только парни'},
+      {value: 'girls', viewValue: 'Только девушки'},
+      {value: 'both', viewValue: 'Без разницы'}
+    ];
+
   constructor(
     public dialogRef: MdDialogRef<PartyAddDialogComponent>,
     @Inject(MD_DIALOG_DATA) public data: any,
@@ -31,8 +38,10 @@ export class PartyAddDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  addParty(){
+  addParty(title: string, adress: string, people: string, data: string,
+    description: string, private_adress: boolean, adv: boolean) {
     this.mapService.addMarker(this.lat, this.lng);
+    this.dialogRef.close();
   }
 
 }

@@ -1,6 +1,25 @@
 <form class="dialog-form">
   <md-form-field class="example-full-width">
-    <input mdInput placeholder="Место вечеринки" #location>
+    <input mdInput placeholder="Название" maxlength="30" >
   </md-form-field>
-</form>
-<button md-button (click)="addParty()">Добавить вечеринку</button>
+  <md-form-field class="example-full-width">
+    <input mdInput placeholder="Место вечеринки" >
+  </md-form-field>
+  <md-select placeholder="Люди" >
+    <md-option *ngFor="let type of types" [value]="type.value">
+      {{ type.viewValue }}
+    </md-option>
+  </md-select>
+  <md-form-field style="float: right">
+    <input mdInput [mdDatepicker]="picker" placeholder="Дата проведения" >
+    <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+    <md-datepicker #picker></md-datepicker>
+  </md-form-field>
+  <md-form-field class="example-full-width">
+      <textarea mdInput type="text" placeholder="Описание" maxlength="250" rows="5" ></textarea>
+  </md-form-field>
+  <md-slide-toggle mdTooltip="Ваш адрес будет отображаться в радиусе одного км.">Скрыть адресс</md-slide-toggle>
+  <md-slide-toggle style="float: right" mdTooltip="Доступно только бизнес аккаунтам." disabled="true">Рекламировать</md-slide-toggle>
+</form><br />
+<button md-button (click)="addParty()>ДОБАВИТЬ</button>
+<button md-button (click)="onNoClick()" style="float: right">ОТМЕНИТЬ</button>
