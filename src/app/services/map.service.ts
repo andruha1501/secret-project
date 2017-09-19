@@ -21,16 +21,12 @@ export class MapService {
 
   addMarker(lat: number, lng: number, hidden?: boolean): void {
     if(hidden) {
-      new google.maps.Circle({
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
+      new google.maps.Marker({
+        label: "F",
+        position: new google.maps.LatLng(lat+this.fakeCoords(),lng+this.fakeCoords()),
         map: this.map,
-        center: {lat: lat, lng: lng},
-        radius: 100
-      })
+        title: 'Адрес не точный'
+      });
     } 
     else {
       let marker = new google.maps.Marker({
@@ -38,5 +34,8 @@ export class MapService {
         map: this.map
       });
     }
+  }
+  fakeCoords(): number {
+    return +Math.random().toFixed(3)/10;
   }
 }
