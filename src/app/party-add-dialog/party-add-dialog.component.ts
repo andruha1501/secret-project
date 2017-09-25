@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core'
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { MapComponent } from '../map/map.component';
 import { MapService } from '../services/map.service';
+
 const types = [
   {value: 'mens', viewValue: 'Только парни'},
   {value: 'girls', viewValue: 'Только девушки'},
@@ -31,7 +32,10 @@ export class PartyAddDialogComponent implements OnInit {
     autocomplete.addListener('place_changed', () => {
       this.lat=autocomplete.getPlace().geometry.location.lat();
       this.lng=autocomplete.getPlace().geometry.location.lng();
+      //console.log(this.lat);
+      //console.log(this.lng);
     });
+    //setInterval(() => this.mapService.addMarker(48.272774, 25.928441, true), 100);
   }
 
   onNoClick(): void {

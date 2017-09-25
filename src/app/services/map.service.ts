@@ -8,7 +8,7 @@ interface Markers {
 
 @Injectable()
 export class MapService {
-  //markers: google.maps.Marker[] = []; 
+  markers: google.maps.Marker[] = []; 
   map: google.maps.Map;
   constructor(private http: HttpClient) { 
    
@@ -20,8 +20,9 @@ export class MapService {
   }
 
   addMarker(lat: number, lng: number, hidden?: boolean): void {
+    let marker: any
     if(hidden) {
-      new google.maps.Marker({
+       marker = new google.maps.Marker({
         label: "F",
         position: new google.maps.LatLng(lat+this.fakeCoords(),lng+this.fakeCoords()),
         map: this.map,
@@ -29,13 +30,20 @@ export class MapService {
       });
     } 
     else {
-      let marker = new google.maps.Marker({
+       marker = new google.maps.Marker({
         position: new google.maps.LatLng(lat,lng),
         map: this.map
       });
     }
+    this.markers.push(marker);
   }
   fakeCoords(): number {
-    return +Math.random().toFixed(3)/10;
+    let random = +Math.random().toFixed(3)/100;
+    if(random > 0.005) {
+      return random *= -1;
+    }
+    else {
+      return random;
+    }
   }
 }
