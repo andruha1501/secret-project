@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core'
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { MapComponent } from '../map/map.component';
 import { MapService } from '../services/map.service';
+import { Party } from '../classes/party';
 
 const types = [
   {value: 'mens', viewValue: 'Только парни'},
@@ -17,8 +18,16 @@ export class PartyAddDialogComponent implements OnInit {
   @ViewChild('location') latt: ElementRef;
   lat: number;
   lng: number;
-  types=types;
-  private_adress:boolean = false;
+  title: string;
+  adress: string;
+  people: string;
+  date: string;
+  description: string;
+  private_adress: boolean;
+  ads: boolean;
+  party: Party;
+
+  types = types;
 
   constructor(
     public dialogRef: MdDialogRef<PartyAddDialogComponent>,
@@ -42,13 +51,11 @@ export class PartyAddDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  addParty( title: string, 
-            adress: string, 
-            people: string, 
-            data: string,
-            description: string, 
-            private_adress: boolean,
-            adv: boolean) {
+  addParty() {
+    this.party = new Party(this.title, this.adress, this.lat, this.lng, this.people, this.date,
+      this.description, this.private_adress, this.ads);
+
+    this.mapService.postData(this.party);
     this.mapService.addMarker(this.lat, this.lng, this.private_adress);
     this.dialogRef.close();
   }
