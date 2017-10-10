@@ -18,10 +18,9 @@ export class ViewListComponent implements OnInit {
   getData(): void {
     this.mapService
         .getData()
-        .subscribe(markers => {
-          for(var m of markers)
-            this.partyList.push(m.name);
-
+        .subscribe(res => {
+          for(var m of res.data)
+            this.partyList.push(m.title);
         });
   }
 

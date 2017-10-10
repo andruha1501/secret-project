@@ -24,7 +24,7 @@ export class PartyAddDialogComponent implements OnInit {
   date: string;
   description: string;
   private_adress: boolean;
-  ads: boolean;
+  ads: boolean = false;
   party: Party;
 
   types = types;
@@ -41,10 +41,8 @@ export class PartyAddDialogComponent implements OnInit {
     autocomplete.addListener('place_changed', () => {
       this.lat=autocomplete.getPlace().geometry.location.lat();
       this.lng=autocomplete.getPlace().geometry.location.lng();
-      //console.log(this.lat);
-      //console.log(this.lng);
+      this.adress = autocomplete.getPlace().formatted_address;
     });
-    //setInterval(() => this.mapService.addMarker(48.272774, 25.928441, true), 100);
   }
 
   onNoClick(): void {

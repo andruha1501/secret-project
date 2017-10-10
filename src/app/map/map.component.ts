@@ -1,8 +1,8 @@
-//https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/googlemaps
-
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, NgZone } from '@angular/core';
 import {} from '@types/googlemaps';
 import { MapService } from '../services/map.service';
+import { Party } from '../classes/party';
+
 
 @Component({
   selector: 'app-map',
@@ -14,12 +14,13 @@ export class MapComponent implements OnInit {
  // @Input('lng') public lng: number;
   @ViewChild('mapContainer') mapContainer: ElementRef;
 
-  //public markers: google.maps.Marker[] = []; 
-  
+  parties: Party[] = [];
+  //public markers: google.maps.Marker[] = [];
+
   constructor(private mapService: MapService) { }
 
   ngOnInit() {
-    let latlng = new google.maps.LatLng(	48.29257, 25.93585);
+    let latlng = new google.maps.LatLng(48.29257, 25.93585);
     this.mapService.map = new google.maps.Map(this.mapContainer.nativeElement,{
       center: latlng,
       zoom: 15,
@@ -38,14 +39,14 @@ export class MapComponent implements OnInit {
     }
     this.getData();
   }
+
   getData(): void {
-    this.mapService
-        .getData()
-        .subscribe(markers => {
-          for(let m of markers)
-            this.mapService.addMarker(m.lat, m.lng);
+    this.mapService.getData().subscribe(res => {
+      this.parties = res.data;
+      for (let m of this.parties) {
+        this.mapService.addMarker(m.lan1, m.lan2, m.private_adress);
+      }
+    });
 
-        });
   }
-
 }

@@ -26,14 +26,27 @@ let response = {
     message: null
 };
 
+router.post('/postParty', (req, res) => {
+  connection((db) => {
+    db.collection('parties')
+      .insertOne(req.body, function(err, result){
+        if(err){
+            res.send(err);
+        } else {
+          res.send('success');
+        }
+      });
+  });
+});
+
 // Get users
-router.get('/users', (req, res) => {
+router.get('/getParty', (req, res) => {
     connection((db) => {
-        db.collection('users')
+        db.collection('parties')
             .find()
             .toArray()
-            .then((users) => {
-                response.data = users;
+            .then((parties) => {
+                response.data = parties;
                 res.json(response);
             })
             .catch((err) => {

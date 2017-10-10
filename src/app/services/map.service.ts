@@ -1,28 +1,33 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from "rxjs/Observable";
 import { Party } from '../classes/party';
+import 'rxjs/add/operator/map';
 
-interface Markers {
-  lat: number,
-  lng: number
+interface ItemsResponse {
+  data: any;
 }
 
 @Injectable()
 export class MapService {
   markers: google.maps.Marker[] = [];
   map: google.maps.Map;
+
+  parties: Party[] = [];
+
   constructor(private http: HttpClient) {
 
   }
 
-
-  getData(): Observable<any> {
-    return this.http.get<Markers>('../../assets/markers.json');
+  getData() {
+    return this.http.get<ItemsResponse>('api/getParty');
   }
 
-  postData(party: any):any {
-    console.log(party);
+  postData(party: any) {
+    let data = JSON.stringify(party);
+    return this.http.post('api/postParty', data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')})
+        .subscribe();
   }
 
   addMarker(lat: number, lng: number, hidden?: boolean): void {

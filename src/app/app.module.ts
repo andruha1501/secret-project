@@ -26,6 +26,7 @@ import { PartyAddDialogComponent } from './party-add-dialog/party-add-dialog.com
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot( appRoutes),
     BrowserAnimationsModule,
