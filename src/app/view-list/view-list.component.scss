@@ -1,0 +1,35 @@
+.item {
+    padding: 0;
+    margin-bottom: 5px;
+    padding: 5px
+}
+
+.title {
+    font-size: 15px;
+}
+
+.adress {
+    font-size: 12px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 2;
+    &:hover {
+        background: #fff; 
+        white-space: normal; 
+    }
+}
+
+.date {
+    font-size: 14px;
+    float: right
+}
+.people {
+    font-size: 14px;
+}
+
+
+.descr {
+    font-size: 11px;
+    color: #999;
+}
